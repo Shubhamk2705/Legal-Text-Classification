@@ -1,296 +1,172 @@
-*1️⃣ Open Kaggle*
+1️⃣ Open Kaggle
 
+Go to kaggle.com
 
+Log in
 
-*Go to https://www.kaggle.com/*
+Click New Notebook
 
-*.*
+You now have a Jupyter environment with:
 
+CPU/GPU options
 
+/kaggle/working → model files will be saved here
 
-*Log in using your account.*
+2️⃣ Upload Your Legal Dataset
 
+Right sidebar → Data → Add Data → Upload
 
+Upload:
+legal_text_classification.csv (or your dataset)
 
-*Click “New Notebook” to create a new Jupyter Notebook environment.*
+After uploading, Kaggle gives a path like:
 
+/kaggle/input/legaltextsumm/legal_text_classification.csv
 
+3️⃣ Copy Dataset Path
 
-*You’ll get a coding environment with CPU/GPU options and a /kaggle/working folder where your model files will be saved.*
+In the Data panel, click the dataset name
 
+You will see a folder icon 📁 with the full path
 
+Copy that path
 
-*2️⃣ Upload the Dataset of Legal Documents*
+You will paste this inside the training code.
 
+4️⃣ FIRST FILE → Run legal_case_class.py (Training Pipeline)
+Create your first Kaggle notebook cell.
 
+Paste the entire code from your file:
 
-*In the right sidebar, go to the “Data” section.*
+legal_case_class.py
 
 
+This code will:
 
-*Click “Add Data” → “Upload”.*
+✔ Load dataset
+✔ Clean text
+✔ Summarize legal text
+✔ Train TF-IDF + RandomForest
+✔ Show accuracy + classification report
+✔ Save:
 
+/kaggle/working/legal_case_classifier.joblib
+/kaggle/working/tfidf_vectorizer.joblib
 
+5️⃣ Add Dataset Path & Run
 
-*Select your legal dataset file (.csv or .xlsx) from your computer.*
+Look for this line in your code:
 
+DATASET_PATH = '/kaggle/input/legaltextsumm/legal_text_classification.csv'
 
 
-*Example file: legal\_text\_classification.csv*
+Replace it with your actual path.
 
+Then Run the entire cell (Shift + Enter).
 
+You will see:
+✓ Model saved: /kaggle/working/legal_case_classifier.joblib
+✓ Vectorizer saved: /kaggle/working/tfidf_vectorizer.joblib
+PIPELINE COMPLETE!
 
-*Once it uploads successfully, Kaggle will assign it a dataset path, usually something like:*
+6️⃣ Confirm Training
 
+Check:
 
+✔ Output metrics
 
-*/kaggle/input/legaltextsumm/legal\_text\_classification.csv*
+Accuracy
 
+Confusion matrix
 
+Classification report
 
-*3️⃣ Copy the Dataset Path*
+✔ Files tab
 
+You should see:
 
+legal_case_classifier.joblib
 
-*After upload, click on the dataset name in the “Data” panel.*
+tfidf_vectorizer.joblib
 
+7️⃣ SECOND FILE → Run legal_case_analyzer.py (Interactive Analyzer)
+Create a new cell below.
 
+Paste the code from your second Python file:
 
-*You’ll see a small folder icon 📁 with a file path (example above).*
+legal_case_analyzer.py
 
 
+Ensure the last line uses double underscores:
 
-*Copy that full path — you’ll need to paste it inside the training code where it says DATASET\_PATH.*
+if __name__ == "__main__":
+    create_interactive_analyzer()
 
 
+This script will:
 
-*4️⃣ Paste the “COMPLETE LEGAL CASE CLASSIFICATION PIPELINE” Code*
+✔ Load your saved model
+✔ Load TF-IDF vectorizer
+✔ Create an interactive UI using ipywidgets
+✔ Handle summarization + prediction
 
+8️⃣ Run the Analyzer Code
 
+Run the cell.
 
-*In the first cell of your Kaggle notebook, paste the entire training + prediction pipeline code you shared earlier.*
+You will now see a live UI:
 
+Text Input Box
 
+Example Dropdown
 
-*This script handles:*
+Analyze Case Button
 
+Clear Button
 
+9️⃣ Test With Legal Text
 
-*Loading and preprocessing your dataset*
+Enter any paragraph.
 
+Example:
 
+The trial court's decision was affirmed as the defendant was found liable for negligence.
 
-*Cleaning and summarizing text*
 
+Click Analyze Case.
 
+🔟 View the Final Model Output
 
-*Training a Random Forest classifier*
+The analyzer shows:
 
+📄 Full Text
 
+Your entered paragraph.
 
-*Evaluating performance*
+🧩 Step 1 — Summarization
 
+Key legal outcome extracted.
 
+⚖️ Step 2 — Classification
 
-*Saving the trained model and TF-IDF vectorizer*
+Predicted label:
 
+Affirmed
 
+Cited
 
-*5️⃣ Add the Dataset Path \& Run*
+Applied
 
+Reversed
 
+Dismissed
 
-*Inside that code, find this line:*
+etc.
 
+📈 Confidence Scores
 
+Top 3 predictions with probability bars.
 
-*DATASET\_PATH = '/kaggle/input/legaltextsumm/legal\_text\_classification.csv'*
+📝 Plain-text Output
 
-
-
-
-
-*Replace the path with your actual dataset link if it’s different.*
-
-
-
-*Then run the entire cell (Shift + Enter).*
-
-
-
-*What happens now:*
-
-
-
-*The dataset loads and prepares.*
-
-
-
-*The model trains using TF-IDF features.*
-
-
-
-*You’ll see accuracy, classification report, and label distribution.*
-
-
-
-*Finally, it saves:*
-
-
-
-*/kaggle/working/legal\_case\_classifier.joblib*
-
-*/kaggle/working/tfidf\_vectorizer.joblib*
-
-
-
-
-
-*✅ Once you see messages like:*
-
-
-
-*✓ Model saved: /kaggle/working/legal\_case\_classifier.joblib*
-
-*✓ Vectorizer saved: /kaggle/working/tfidf\_vectorizer.joblib*
-
-*PIPELINE COMPLETE!*
-
-
-
-
-
-*it means your model has been successfully trained.*
-
-
-
-*6️⃣ Confirm Model Training*
-
-
-
-*Scroll down to the output — you should see model accuracy, classification report, and sample predictions on example cases.*
-
-
-
-*Also, check the “Files” tab (on the right of the Kaggle screen) — you’ll find your two .joblib files saved there.*
-
-*That confirms the model was trained and stored properly.*
-
-
-
-*7️⃣ Add the “INTERACTIVE LEGAL CASE ANALYZER FOR KAGGLE” Code*
-
-
-
-*Now, create a new code cell right below your training code.*
-
-
-
-*Paste your second script — “Interactive Legal Case Analyzer for Kaggle.”*
-
-
-
-*Make sure it uses:*
-
-
-
-*if \_\_name\_\_ == "\_\_main\_\_":*
-
-    *create\_interactive\_analyzer()*
-
-
-
-
-
-*(with double underscores).*
-
-
-
-*This code loads your saved model and vectorizer from /kaggle/working and builds a beautiful interactive interface using ipywidgets.*
-
-
-
-*8️⃣ Run the Interactive Analyzer*
-
-
-
-*Run the cell.*
-
-
-
-*You’ll see an interface appear directly in the notebook with:*
-
-
-
-*A text box to enter legal text*
-
-
-
-*Example dropdowns (Affirmed, Cited, Applied)*
-
-
-
-*Buttons: “Analyze Case” and “Clear”*
-
-
-
-*The interface is powered by your trained model.*
-
-
-
-*9️⃣ Test with Legal Paragraphs*
-
-
-
-*Either:*
-
-
-
-*Select an example from the dropdown menu, or*
-
-
-
-*Paste your own legal case paragraph into the text box.*
-
-*Example:*
-
-
-
-*“The defendant was found liable for negligence and the trial court’s decision was affirmed on appeal.”*
-
-
-
-*Click the “Analyze Case” button.*
-
-
-
-*🔟 View Final Output*
-
-
-
-*The analyzer will instantly show:*
-
-
-
-*📄 Full Text (what you entered)*
-
-
-
-*🧩 Step 1 – Summarization: key legal outcome extracted (e.g., “Appeal affirmed; defendant liable.”)*
-
-
-
-*⚖️ Step 2 – Classification: predicted label (e.g., affirmed, applied, cited, etc.)*
-
-
-
-*✅ Confidence score*
-
-
-
-*📊 Top 3 predictions with percentage bars*
-
-
-
-*You’ll also see a plain text summary printed below the HTML result, useful for copy/paste or logs.*
-
+Printed below for easy copying.
